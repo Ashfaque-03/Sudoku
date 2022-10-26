@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- fav icon -->
+    <link rel="shortcut icon" href="/assets/image/icon/favicon.png" type="image/x-icon">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <!--  w3school icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <title>Sudoko</title>
+</head>
+<style>
+    .centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+}
+</style>
+<body>
+    <div id="header-box"><div class="text-center mb-4" id="header">My Sudoku</div></div>
+
+    <!-- sudoku body with its settings -->
+    <div id="sudoku-body" class="d-flex mt-2 " style="float: left;">
+        
+        <!-- Left option box -->
+        <div id="left-opt" class="">
+
+            <button id="level1Btn" class="opt-btn" onclick="levelBtn('level1')">
+                <div class="flexDisplay" type="">
+                    <p id="level1Name" class="options">Level 1</p>
+                    <i id="level1star1" class="fa fa-star-o star-icon"></i>                  
+                    <i id="level1star2" class="fa fa-star-o star-icon"></i>                  
+                    <i id="level1star3" class="fa fa-star-o star-icon"></i>                  
+                    <i id="level1star4" class="fa fa-star-o star-icon"></i>                  
+                    <i id="level1star5" class="fa fa-star-o star-icon"></i>                  
+                </div>
+            </button>
+
+            <button id="level2Btn" class="opt-btn" onclick="levelBtn('level2')">
+                <div class="flexDisplay">
+                    <p id="level2Name" class="options">Level 2</p>
+                    <i id="level2star1" class="fa fa-star-o star-icon"></i>                  
+                    <i id="level2star2" class="fa fa-star-o star-icon"></i>                  
+                    <i id="level2star3" class="fa fa-star-o star-icon"></i>                  
+                    <i id="level2star4" class="fa fa-star-o star-icon"></i>                  
+                    <i id="level2star5" class="fa fa-star-o star-icon"></i>                     
+                </div>
+            </button>
+
+            <button id="level3Btn" class="opt-btn" onclick="levelBtn('level3')">
+                <div class="flexDisplay">
+                    <p id="level3Name" class="options">Level 3</p>
+                    <i id="level3star1" class="fa fa-star-o star-icon"></i>                  
+                    <i id="level3star2" class="fa fa-star-o star-icon"></i>                  
+                    <i id="level3star3" class="fa fa-star-o star-icon"></i>                  
+                    <i id="level3star4" class="fa fa-star-o star-icon"></i>                  
+                    <i id="level3star5" class="fa fa-star-o star-icon"></i>                
+                </div>
+            </button>
+
+            <button id="level4Btn" class="opt-btn" onclick="levelBtn('level4')">
+                <div class="flexDisplay">
+                    <p id="level4Name" class="options">Level 4</p>
+                    <i id="level4star1" class="fa fa-star-o star-icon"></i>                  
+                    <i id="level4star2" class="fa fa-star-o star-icon"></i>                  
+                    <i id="level4star3" class="fa fa-star-o star-icon"></i>                  
+                    <i id="level4star4" class="fa fa-star-o star-icon"></i>                  
+                    <i id="level4star5" class="fa fa-star-o star-icon"></i>               
+                </div>
+            </button>
+
+            <button id="level5Btn" class="opt-btn" onclick="levelBtn('level5')">
+                <div class="flexDisplay">
+                    <p id="level5Name" class="options">Level 5</p>
+                    <i id="level5star1" class="fa fa-star-o star-icon"></i>                  
+                    <i id="level5star2" class="fa fa-star-o star-icon"></i>                  
+                    <i id="level5star3" class="fa fa-star-o star-icon"></i>                  
+                    <i id="level5star4" class="fa fa-star-o star-icon"></i>                  
+                    <i id="level5star5" class="fa fa-star-o star-icon"></i>                      
+                </div>
+            </button>
+
+            <button id="level6Btn" class="opt-btn" onclick="levelBtn('level6')">
+                <div class="flexDisplay">
+                    <p id="level6Name" class="options">Level 6</p>
+                    <i id="level6star1" class="fa fa-star-o star-icon"></i>                  
+                    <i id="level6star2" class="fa fa-star-o star-icon"></i>                  
+                    <i id="level6star3" class="fa fa-star-o star-icon"></i>                  
+                    <i id="level6star4" class="fa fa-star-o star-icon"></i>                  
+                    <i id="level6star5" class="fa fa-star-o star-icon"></i>      
+                </div>
+            </button>
+
+            <button id="setting" class="opt-btn" onclick="settingShow()">
+                <div class="">
+                    <p class="">Settings</p>
+                </div>
+            </button>
+
+        </div>
+
+            <!-- sudoko box -->
+        <div id="allSudokuBox" class="">
+            <div id="level1" class="levels">
+                <div id="level1-box" class="sudoko-box text-center">    
+                    <form action="" autocomplete="off" id="formSudoku">  <!-- Used only for auto complete=off . only for input tag of numbers. it affect all js if form given to all other buttons etc... --> 
+                        <div class="row-box">
+                            <div class="box">
+                                <div class="num3Box">
+                                    <input type="text" name="" id="level1r1c1" class="inp level1-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" >
+                                    <input type="text" name="" id="level1r1c2" class="inp level1-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="5" disabled>
+                                    <input type="text" name="" id="level1r1c3" class="inp level1-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck() " value="8" disabled>
+                                </div>
+                                <div class="num3Box">
+                                    <input type="text" name=""  id="level1r2c1" class="inp level1-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" >
+                                    <input type="text" name=""  id="level1r2c2" class="inp level1-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="">
+                                    <input type="text" name=""  id="level1r2c3" class="inp level1-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="">
+                                </div>
+                                <div class="num3Box">
+                                    <input type="text" name=""  id="level1r3c1" class="inp level1-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="">
+                                    <input type="text" name=""  id="level1r3c2" class="inp level1-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="3" disabled>
+                                    <input type="text" name=""  id="level1r3c3" class="inp level1-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="2" disabled>
+                                </div>
+                            </div>
+                            <div class="box">
+                                <div class="num3Box">
+                                    <input type="text" name="" id="level1r1c4" class="inp level1-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="">
+                                    <input type="text" name="" id="level1r1c5" class="inp level1-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" >
+                                    <input type="text" name="" id="level1r1c6" class="inp level1-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="">
+                                </div>
+                                <div class="num3Box">
+                                    <input type="text" name="" id="level1r2c4" class="inp level1-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="5" disabled>
+                                    <input type="text" name="" id="level1r2c5" class="inp level1-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" >
+                                    <input type="text" name="" id="level1r2c6" class="inp level1-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="8" disabled>
+                                </div>
+                                <div class="num3Box">
+                                    <input type="text" name="" id="level1r3c4" class="inp level1-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="1" disabled>
+                                    <input type="text" name="" id="level1r3c5" class="inp level1-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="7" disabled>
+                                    <input type="text" name="" id="level1r3c6" class="inp level1-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="4" disabled>
+                                </div>
+                            </div>
+                            <div class="box">
+                                <div class="num3Box">
+                                    <input type="text" name="" id="level1r1c7" class="inp level1-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="4" disabled>
+                                    <input type="text" name="" id="level1r1c8" class="inp level1-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="1" disabled>
+                                    <input type="text" name="" id="level1r1c9" class="inp level1-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="">
+                                </div>
+                                <div class="num3Box">
+                                    <input type="text" name="" id="level1r2c7" class="inp level1-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="">
+                                    <input type="text" name="" id="level1r2c8" class="inp level1-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="">
+                                    <input type="text" name="" id="level1r2c9" class="inp level1-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="">
+                                </div>
+                                <div class="num3Box">
+                                    <input type="text" name="" id="level1r3c7" class="inp level1-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="5" disabled>
+                                    <input type="text" name="" id="level1r3c8" class="inp level1-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="6" disabled>
+                                    <input type="text" name="" id="level1r3c9" class="inp level1-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row-box">
+                            <div class="box">
+                                <div class="num3Box">
+                                    <input type="text" name="" id="level1r4c1" class="inp level1-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="3" disabled>
+                                    <input type="text" name="" id="level1r4c2" class="inp level1-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="8" disabled>
+                                    <input type="text" name="" id="level1r4c3" class="inp level1-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="">
+                                </div>
+                                <div class="num3Box">
+                                    <input type="text" name="" id="level1r5c1" class="inp level1-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" >
+                                    <input type="text" name="" id="level1r5c2" class="inp level1-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="6" disabled>
+                                    <input type="text" name="" id="level1r5c3" class="inp level1-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="7" disabled>
+                                </div>
+                                <div class="num3Box">
+                                    <input type="text" name="" id="level1r6c1" class="inp level1-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="4" disabled>
+                                    <input type="text" name="" id="level1r6c2" class="inp level1-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="">
+                                    <input type="text" name="" id="level1r6c3" class="inp level1-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="">
+                                </div>
+                            </div>
+                            <div class="box">
+                                <div class="num3Box">
+                                    <input type="text" name="" id="level1r4c4" class="inp level1-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="">
+                                    <input type="text" name="" id="level1r4c5" class="inp level1-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="2" disabled>
+                                    <input type="text" name="" id="level1r4c6" class="inp level1-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="">
+                                </div>
+                                <div class="num3Box">
+                                    <input type="text" name="" id="level1r5c4" class="inp level1-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" >
+                                    <input type="text" name="" id="level1r5c5" class="inp level1-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="8" disabled>
+                                    <input type="text" name="" id="level1r5c6" class="inp level1-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" >
+                                </div>
+                                <div class="num3Box">
+                                    <input type="text" name="" id="level1r6c4" class="inp level1-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="7" disabled>
+                                    <input type="text" name="" id="level1r6c5" class="inp level1-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" >
+                                    <input type="text" name="" id="level1r6c6" class="inp level1-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="6" disabled>
+                                </div>
+                            </div>
+                            <div class="box">
+                                <div class="num3Box">
+                                    <input type="text" name="" id="level1r4c7" class="inp level1-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="">
+                                    <input type="text" name="" id="level1r4c8" class="inp level1-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="4" disabled>
+                                    <input type="text" name="" id="level1r4c9" class="inp level1-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="6" disabled>
+                                </div>
+                                <div class="num3Box">
+                                    <input type="text" name="" id="level1r5c7" class="inp level1-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="2" disabled>
+                                    <input type="text" name="" id="level1r5c8" class="inp level1-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="3" disabled>
+                                    <input type="text" name="" id="level1r5c9" class="inp level1-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="">
+                                </div>
+                                <div class="num3Box">
+                                    <input type="text" name="" id="level1r6c7" class="inp level1-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="">
+                                    <input type="text" name="" id="level1r6c8" class="inp level1-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="">
+                                    <input type="text" name="" id="level1r6c9" class="inp level1-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="1" disabled>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row-box">
+                            <div class="box">
+                                <div class="num3Box">
+                                    <input type="text" name="" id="level1r7c1" class="inp level1-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="2" disabled>
+                                    <input type="text" name="" id="level1r7c2" class="inp level1-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="7" disabled>
+                                    <input type="text" name="" id="level1r7c3" class="inp level1-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="">
+                                </div>
+                                <div class="num3Box">
+                                    <input type="text" name="" id="level1r8c1" class="inp level1-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="8" disabled>
+                                    <input type="text" name="" id="level1r8c2" class="inp level1-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="">
+                                    <input type="text" name="" id="level1r8c3" class="inp level1-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="">
+                                </div>
+                                <div class="num3Box">
+                                    <input type="text" name="" id="level1r9c1" class="inp level1-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="">
+                                    <input type="text" name="" id="level1r9c2" class="inp level1-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="">
+                                    <input type="text" name="" id="level1r9c3" class="inp level1-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="6" disabled>
+                                </div>
+                            </div>
+                            <div class="box">
+                                <div class="num3Box">
+                                    <input type="text" name="" id="level1r7c4" class="inp level1-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="">
+                                    <input type="text" name="" id="level1r7c5" class="inp level1-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="1" disabled>
+                                    <input type="text" name="" id="level1r7c6" class="inp level1-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="">
+                                </div>
+                                <div class="num3Box">
+                                    <input type="text" name="" id="level1r8c4" class="inp level1-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" >
+                                    <input type="text" name="" id="level1r8c5" class="inp level1-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="5" disabled>
+                                    <input type="text" name="" id="level1r8c6" class="inp level1-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" >
+                                </div>
+                                <div class="num3Box">
+                                    <input type="text" name="" id="level1r9c4" class="inp level1-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="">
+                                    <input type="text" name="" id="level1r9c5" class="inp level1-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" >
+                                    <input type="text" name="" id="level1r9c6" class="inp level1-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="">
+                                </div>
+                            </div>
+                            <div class="box">
+                                <div class="num3Box">
+                                    <input type="text" name="" id="level1r7c7" class="inp level1-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" >
+                                    <input type="text" name="" id="level1r7c8" class="inp level1-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="8" disabled>
+                                    <input type="text" name="" id="level1r7c9" class="inp level1-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="5" disabled>
+                                </div>
+                                <div class="num3Box">
+                                    <input type="text" name="" id="level1r8c7" class="inp level1-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="">
+                                    <input type="text" name="" id="level1r8c8" class="inp level1-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="">
+                                    <input type="text" name="" id="level1r8c9" class="inp level1-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="4" disabled>
+                                </div>
+                                <div class="num3Box">
+                                    <input type="text" name="" id="level1r9c7" class="inp level1-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="3" disabled>
+                                    <input type="text" name="" id="level1r9c8" class="inp level1-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="">
+                                    <input type="text" name="" id="level1r9c9" class="inp level1-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" >
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div id="level2" class="levels">
+                <div id="level2-box" class="sudoko-box d-block text-center mt-2">    
+                    <form action="" autocomplete="off" id="formSudoku">  <!-- Used only for auto complete=off . only for input tag of numbers. it affect all js if form given to all other buttons etc... --> 
+                        <div class="row-box">
+                            <div class="box">
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" id="level2r1c1" id="" class="inp level2-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="5" disabled></div>
+                                    <div class="inp-box"><input type="text" id="level2r1c2" id="" class="inp level2-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="3" disabled></div>
+                                    <div class="inp-box"><input type="text" id="level2r1c3" id="" class="inp level2-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck() " value="" ></div>
+                                </div>
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" id="level2r2c1" id="" class="inp level2-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="6" disabled></div>
+                                    <div class="inp-box"><input type="text" id="level2r2c2" id="" class="inp level2-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" id="level2r2c3" id="" class="inp level2-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                </div>
+                                <div class="d-flex">
+                                    <div class="inp-box"><input type="text" id="level2r3c1" id="" class="inp level2-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" id="level2r3c2" id="" class="inp level2-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="9" disabled></div>
+                                    <div class="inp-box"><input type="text" id="level2r3c3" id="" class="inp level2-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="8" disabled></div>
+                                </div>
+                            </div>
+                            <div class="box">
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" name="" id="level2r1c4" class="inp level2-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level2r1c5" class="inp level2-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="7" disabled></div>
+                                    <div class="inp-box"><input type="text" name="" id="level2r1c6" class="inp level2-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                </div>
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" name="" id="level2r2c4" class="inp level2-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="1" disabled></div>
+                                    <div class="inp-box"><input type="text" name="" id="level2r2c5" class="inp level2-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="9" disabled></div>
+                                    <div class="inp-box"><input type="text" name="" id="level2r2c6" class="inp level2-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="5" disabled></div>
+                                </div>
+                                <div class="d-flex">
+                                    <div class="inp-box"><input type="text" name="" id="level2r3c4" class="inp level2-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level2r3c5" class="inp level2-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level2r3c6" class="inp level2-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                </div>
+                            </div>
+                            <div class="box">
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" name="" id="level2r1c7" class="inp level2-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level2r1c8" class="inp level2-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level2r1c9" class="inp level2-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                </div>
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" name="" id="level2r2c7" class="inp level2-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level2r2c8" class="inp level2-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level2r2c9" class="inp level2-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                </div>
+                                <div class="d-flex">
+                                    <div class="inp-box"><input type="text" name="" id="level2r3c7" class="inp level2-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level2r3c8" class="inp level2-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="6" disabled></div>
+                                    <div class="inp-box"><input type="text" name="" id="level2r3c9" class="inp level2-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row-box">
+                            <div class="box">
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" name="" id="level2r4c1" class="inp level2-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="8" disabled></div>
+                                    <div class="inp-box"><input type="text" name="" id="level2r4c2" class="inp level2-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level2r4c3" class="inp level2-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                </div>
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" name="" id="level2r5c1" class="inp level2-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="4" disabled></div>
+                                    <div class="inp-box"><input type="text" name="" id="level2r5c2" class="inp level2-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level2r5c3" class="inp level2-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                </div>
+                                <div class="d-flex">
+                                    <div class="inp-box"><input type="text" name="" id="level2r6c1" class="inp level2-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="7" disabled></div>
+                                    <div class="inp-box"><input type="text" name="" id="level2r6c2" class="inp level2-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level2r6c3" class="inp level2-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                </div>
+                            </div>
+                            <div class="box">
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" name="" id="level2r4c4" class="inp level2-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level2r4c5" class="inp level2-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="6" disabled></div>
+                                    <div class="inp-box"><input type="text" name="" id="level2r4c6" class="inp level2-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                </div>
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" name="" id="level2r5c4" class="inp level2-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="8" disabled></div>
+                                    <div class="inp-box"><input type="text" name="" id="level2r5c5" class="inp level2-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level2r5c6" class="inp level2-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="3" disabled></div>
+                                </div>
+                                <div class="d-flex">
+                                    <div class="inp-box"><input type="text" name="" id="level2r6c4" class="inp level2-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level2r6c5" class="inp level2-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="2" disabled></div>
+                                    <div class="inp-box"><input type="text" name="" id="level2r6c6" class="inp level2-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                </div>
+                            </div>
+                            <div class="box">
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" name="" id="level2r4c7" class="inp level2-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level2r4c8" class="inp level2-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level2r4c9" class="inp level2-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="3" disabled></div>
+                                </div>
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" name="" id="level2r5c7" class="inp level2-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level2r5c8" class="inp level2-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level2r5c9" class="inp level2-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="1" disabled></div>
+                                </div>
+                                <div class="d-flex">
+                                    <div class="inp-box"><input type="text" name="" id="level2r6c7" class="inp level2-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level2r6c8" class="inp level2-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level2r6c9" class="inp level2-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="6" disabled></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row-box">
+                            <div class="box">
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" name="" id="level2r7c1" class="inp level2-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level2r7c2" class="inp level2-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="6" disabled></div>
+                                    <div class="inp-box"><input type="text" name="" id="level2r7c3" class="inp level2-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                </div>
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" name="" id="level2r8c1" class="inp level2-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level2r8c2" class="inp level2-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level2r8c3" class="inp level2-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                </div>
+                                <div class="d-flex">
+                                    <div class="inp-box"><input type="text" name="" id="level2r9c1" class="inp level2-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level2r9c2" class="inp level2-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level2r9c3" class="inp level2-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                </div>
+                            </div>
+                            <div class="box">
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" name="" id="level2r7c4" class="inp level2-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level2r7c5" class="inp level2-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level2r7c6" class="inp level2-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                </div>
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" name="" id="level2r8c4" class="inp level2-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="4" disabled></div>
+                                    <div class="inp-box"><input type="text" name="" id="level2r8c5" class="inp level2-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="1" disabled></div>
+                                    <div class="inp-box"><input type="text" name="" id="level2r8c6" class="inp level2-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="9" disabled></div>
+                                </div>
+                                <div class="d-flex">
+                                    <div class="inp-box"><input type="text" name="" id="level2r9c4" class="inp level2-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level2r9c5" class="inp level2-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="8" disabled></div>
+                                    <div class="inp-box"><input type="text" name="" id="level2r9c6" class="inp level2-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                </div>
+                            </div>
+                            <div class="box">
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" name="" id="level2r7c7" class="inp level2-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="2" disabled></div>
+                                    <div class="inp-box"><input type="text" name="" id="level2r7c8" class="inp level2-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="8" disabled></div>
+                                    <div class="inp-box"><input type="text" name="" id="level2r7c9" class="inp level2-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                </div>
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" name="" id="level2r8c7" class="inp level2-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level2r8c8" class="inp level2-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level2r8c9" class="inp level2-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="5" disabled></div>
+                                </div>
+                                <div class="d-flex">
+                                    <div class="inp-box"><input type="text" name="" id="level2r9c7" class="inp level2-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level2r9c8" class="inp level2-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="7" disabled></div>
+                                    <div class="inp-box "><input type="text" name="" id="level2r9c9" class="inp level2-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="9" disabled></div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div id="level3" class="levels">
+                <div id="level3-box" class="sudoko-box d-block text-center mt-2">    
+                    <form action="" autocomplete="off" id="formSudoku">  <!-- Used only for auto complete=off . only for input tag of numbers. it affect all js if form given to all other buttons etc... --> 
+                        <div class="row-box">
+                            <div class="box">
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" id="level3r1c1" id="" class="inp level3-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" id="level3r1c2" id="" class="inp level3-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" ></div>
+                                    <div class="inp-box"><input type="text" id="level3r1c3" id="" class="inp level3-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck() " value="5" disabled ></div>
+                                </div>
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" id="level3r2c1" id="" class="inp level3-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" ></div>
+                                    <div class="inp-box"><input type="text" id="level3r2c2" id="" class="inp level3-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="7" disabled></div>
+                                    <div class="inp-box"><input type="text" id="level3r2c3" id="" class="inp level3-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                </div>
+                                <div class="d-flex">
+                                    <div class="inp-box"><input type="text" id="level3r3c1" id="" class="inp level3-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" id="level3r3c2" id="" class="inp level3-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="6" disabled></div>
+                                    <div class="inp-box"><input type="text" id="level3r3c3" id="" class="inp level3-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" ></div>
+                                </div>
+                            </div>
+                            <div class="box">
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" name="" id="level3r1c4" class="inp level3-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level3r1c5" class="inp level3-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" ></div>
+                                    <div class="inp-box"><input type="text" name="" id="level3r1c6" class="inp level3-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                </div>
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" name="" id="level3r2c4" class="inp level3-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="5" disabled></div>
+                                    <div class="inp-box"><input type="text" name="" id="level3r2c5" class="inp level3-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" ></div>
+                                    <div class="inp-box"><input type="text" name="" id="level3r2c6" class="inp level3-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="1" disabled></div>
+                                </div>
+                                <div class="d-flex">
+                                    <div class="inp-box"><input type="text" name="" id="level3r3c4" class="inp level3-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" ></div>
+                                    <div class="inp-box"><input type="text" name="" id="level3r3c5" class="inp level3-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level3r3c6" class="inp level3-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                </div>
+                            </div>
+                            <div class="box">
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" name="" id="level3r1c7" class="inp level3-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="1" disabled></div>
+                                    <div class="inp-box"><input type="text" name="" id="level3r1c8" class="inp level3-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" disabled></div>
+                                    <div class="inp-box"><input type="text" name="" id="level3r1c9" class="inp level3-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                </div>
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" name="" id="level3r2c7" class="inp level3-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="3" disabled></div>
+                                    <div class="inp-box"><input type="text" name="" id="level3r2c8" class="inp level3-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="2" disabled></div>
+                                    <div class="inp-box"><input type="text" name="" id="level3r2c9" class="inp level3-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                </div>
+                                <div class="d-flex">
+                                    <div class="inp-box"><input type="text" name="" id="level3r3c7" class="inp level3-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="7" disabled></div>
+                                    <div class="inp-box"><input type="text" name="" id="level3r3c8" class="inp level3-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" ></div>
+                                    <div class="inp-box"><input type="text" name="" id="level3r3c9" class="inp level3-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row-box">
+                            <div class="box">
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" name="" id="level3r4c1" class="inp level3-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level3r4c2" class="inp level3-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level3r4c3" class="inp level3-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                </div>
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" name="" id="level3r5c1" class="inp level3-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="8" disabled></div>
+                                    <div class="inp-box"><input type="text" name="" id="level3r5c2" class="inp level3-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level3r5c3" class="inp level3-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                </div>
+                                <div class="d-flex">
+                                    <div class="inp-box"><input type="text" name="" id="level3r6c1" class="inp level3-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="9" disabled></div>
+                                    <div class="inp-box"><input type="text" name="" id="level3r6c2" class="inp level3-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="2" disabled></div>
+                                    <div class="inp-box"><input type="text" name="" id="level3r6c3" class="inp level3-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="4" disabled></div>
+                                </div>
+                            </div>
+                            <div class="box">
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" name="" id="level3r4c4" class="inp level3-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="9" disabled></div>
+                                    <div class="inp-box"><input type="text" name="" id="level3r4c5" class="inp level3-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="4" disabled></div>
+                                    <div class="inp-box"><input type="text" name="" id="level3r4c6" class="inp level3-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="3" disabled></div>
+                                </div>
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" name="" id="level3r5c4" class="inp level3-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="2" disabled></div>
+                                    <div class="inp-box"><input type="text" name="" id="level3r5c5" class="inp level3-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level3r5c6" class="inp level3-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" ></div>
+                                </div>
+                                <div class="d-flex">
+                                    <div class="inp-box"><input type="text" name="" id="level3r6c4" class="inp level3-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level3r6c5" class="inp level3-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="7" disabled></div>
+                                    <div class="inp-box"><input type="text" name="" id="level3r6c6" class="inp level3-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                </div>
+                            </div>
+                            <div class="box">
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" name="" id="level3r4c7" class="inp level3-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level3r4c8" class="inp level3-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level3r4c9" class="inp level3-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                </div>
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" name="" id="level3r5c7" class="inp level3-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level3r5c8" class="inp level3-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level3r5c9" class="inp level3-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="9" disabled></div>
+                                </div>
+                                <div class="d-flex">
+                                    <div class="inp-box"><input type="text" name="" id="level3r6c7" class="inp level3-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level3r6c8" class="inp level3-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="1" disabled></div>
+                                    <div class="inp-box"><input type="text" name="" id="level3r6c9" class="inp level3-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" ></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row-box">
+                            <div class="box">
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" name="" id="level3r7c1" class="inp level3-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level3r7c2" class="inp level3-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" disabled></div>
+                                    <div class="inp-box"><input type="text" name="" id="level3r7c3" class="inp level3-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                </div>
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" name="" id="level3r8c1" class="inp level3-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="5" disabled></div>
+                                    <div class="inp-box"><input type="text" name="" id="level3r8c2" class="inp level3-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="4" disabled></div>
+                                    <div class="inp-box"><input type="text" name="" id="level3r8c3" class="inp level3-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                </div>
+                                <div class="d-flex">
+                                    <div class="inp-box"><input type="text" name="" id="level3r9c1" class="inp level3-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level3r9c2" class="inp level3-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level3r9c3" class="inp level3-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="6" disabled></div>
+                                </div>
+                            </div>
+                            <div class="box">
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" name="" id="level3r7c4" class="inp level3-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level3r7c5" class="inp level3-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level3r7c6" class="inp level3-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="4" disabled></div>
+                                </div>
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" name="" id="level3r8c4" class="inp level3-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="1" disabled></div>
+                                    <div class="inp-box"><input type="text" name="" id="level3r8c5" class="inp level3-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" ></div>
+                                    <div class="inp-box"><input type="text" name="" id="level3r8c6" class="inp level3-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="9" disabled></div>
+                                </div>
+                                <div class="d-flex">
+                                    <div class="inp-box"><input type="text" name="" id="level3r9c4" class="inp level3-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level3r9c5" class="inp level3-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" ></div>
+                                    <div class="inp-box"><input type="text" name="" id="level3r9c6" class="inp level3-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="2" disabled></div>
+                                </div>
+                            </div>
+                            <div class="box">
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" name="" id="level3r7c7" class="inp level3-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" ></div>
+                                    <div class="inp-box"><input type="text" name="" id="level3r7c8" class="inp level3-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" ></div>
+                                    <div class="inp-box"><input type="text" name="" id="level3r7c9" class="inp level3-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="5" disabled></div>
+                                </div>
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" name="" id="level3r8c7" class="inp level3-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level3r8c8" class="inp level3-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level3r8c9" class="inp level3-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" ></div>
+                                </div>
+                                <div class="d-flex">
+                                    <div class="inp-box"><input type="text" name="" id="level3r9c7" class="inp level3-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level3r9c8" class="inp level3-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="4" disabled></div>
+                                    <div class="inp-box"><input type="text" name="" id="level3r9c9" class="inp level3-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="1" disabled></div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    </div>
+                </div>
+            </div>
+            <div id="level4" class="levels">
+                <div id="level4-box" class="sudoko-box d-block text-center mt-2">    
+                    <form action="" autocomplete="off" id="formSudoku">  <!-- Used only for auto complete=off . only for input tag of numbers. it affect all js if form given to all other buttons etc... --> 
+                        <div class="row-box">
+                            <div class="box">
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" id="level4r1c1" id="" class="inp level4-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" ></div>
+                                    <div class="inp-box"><input type="text" id="level4r1c2" id="" class="inp level4-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="6" disabled></div>
+                                    <div class="inp-box"><input type="text" id="level4r1c3" id="" class="inp level4-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck() " value="8" disabled ></div>
+                                </div>
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" id="level4r2c1" id="" class="inp level4-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" ></div>
+                                    <div class="inp-box"><input type="text" id="level4r2c2" id="" class="inp level4-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="3" disabled></div>
+                                    <div class="inp-box"><input type="text" id="level4r2c3" id="" class="inp level4-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                </div>
+                                <div class="d-flex">
+                                    <div class="inp-box"><input type="text" id="level4r3c1" id="" class="inp level4-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" id="level4r3c2" id="" class="inp level4-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="4" disabled></div>
+                                    <div class="inp-box"><input type="text" id="level4r3c3" id="" class="inp level4-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="9" disabled></div>
+                                </div>
+                            </div>
+                            <div class="box">
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" name="" id="level4r1c4" class="inp level4-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level4r1c5" class="inp level4-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" ></div>
+                                    <div class="inp-box"><input type="text" name="" id="level4r1c6" class="inp level4-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                </div>
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" name="" id="level4r2c4" class="inp level4-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="1" disabled></div>
+                                    <div class="inp-box"><input type="text" name="" id="level4r2c5" class="inp level4-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" ></div>
+                                    <div class="inp-box"><input type="text" name="" id="level4r2c6" class="inp level4-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" ></div>
+                                </div>
+                                <div class="d-flex">
+                                    <div class="inp-box"><input type="text" name="" id="level4r3c4" class="inp level4-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="3" disabled></div>
+                                    <div class="inp-box"><input type="text" name="" id="level4r3c5" class="inp level4-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level4r3c6" class="inp level4-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                </div>
+                            </div>
+                            <div class="box">
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" name="" id="level4r1c7" class="inp level4-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="3" disabled></div>
+                                    <div class="inp-box"><input type="text" name="" id="level4r1c8" class="inp level4-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level4r1c9" class="inp level4-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                </div>
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" name="" id="level4r2c7" class="inp level4-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level4r2c8" class="inp level4-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="4" disabled></div>
+                                    <div class="inp-box"><input type="text" name="" id="level4r2c9" class="inp level4-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                </div>
+                                <div class="d-flex">
+                                    <div class="inp-box"><input type="text" name="" id="level4r3c7" class="inp level4-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="7" disabled></div>
+                                    <div class="inp-box"><input type="text" name="" id="level4r3c8" class="inp level4-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" ></div>
+                                    <div class="inp-box"><input type="text" name="" id="level4r3c9" class="inp level4-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row-box">
+                            <div class="box">
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" name="" id="level4r4c1" class="inp level4-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="5" disabled></div>
+                                    <div class="inp-box"><input type="text" name="" id="level4r4c2" class="inp level4-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="2" disabled></div>
+                                    <div class="inp-box"><input type="text" name="" id="level4r4c3" class="inp level4-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                </div>
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" name="" id="level4r5c1" class="inp level4-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" ></div>
+                                    <div class="inp-box"><input type="text" name="" id="level4r5c2" class="inp level4-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level4r5c3" class="inp level4-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="1" disabled></div>
+                                </div>
+                                <div class="d-flex">
+                                    <div class="inp-box"><input type="text" name="" id="level4r6c1" class="inp level4-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" ></div>
+                                    <div class="inp-box"><input type="text" name="" id="level4r6c2" class="inp level4-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level4r6c3" class="inp level4-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                </div>
+                            </div>
+                            <div class="box">
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" name="" id="level4r4c4" class="inp level4-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level4r4c5" class="inp level4-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" ></div>
+                                    <div class="inp-box"><input type="text" name="" id="level4r4c6" class="inp level4-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                </div>
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" name="" id="level4r5c4" class="inp level4-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" ></div>
+                                    <div class="inp-box"><input type="text" name="" id="level4r5c5" class="inp level4-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level4r5c6" class="inp level4-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="6" disabled></div>
+                                </div>
+                                <div class="d-flex">
+                                    <div class="inp-box"><input type="text" name="" id="level4r6c4" class="inp level4-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level4r6c5" class="inp level4-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" ></div>
+                                    <div class="inp-box"><input type="text" name="" id="level4r6c6" class="inp level4-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" ></div>
+                                </div>
+                            </div>
+                            <div class="box">
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" name="" id="level4r4c7" class="inp level4-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" ></div>
+                                    <div class="inp-box"><input type="text" name="" id="level4r4c8" class="inp level4-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="9" ></div>
+                                    <div class="inp-box"><input type="text" name="" id="level4r4c9" class="inp level4-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="4" ></div>
+                                </div>
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" name="" id="level4r5c7" class="inp level4-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="8" disabled></div>
+                                    <div class="inp-box"><input type="text" name="" id="level4r5c8" class="inp level4-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="7" disabled></div>
+                                    <div class="inp-box"><input type="text" name="" id="level4r5c9" class="inp level4-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="3" disabled></div>
+                                </div>
+                                <div class="d-flex">
+                                    <div class="inp-box"><input type="text" name="" id="level4r6c7" class="inp level4-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level4r6c8" class="inp level4-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level4r6c9" class="inp level4-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="6" disabled></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row-box">
+                            <div class="box">
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" name="" id="level4r7c1" class="inp level4-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level4r7c2" class="inp level4-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" ></div>
+                                    <div class="inp-box"><input type="text" name="" id="level4r7c3" class="inp level4-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                </div>
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" name="" id="level4r8c1" class="inp level4-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level4r8c2" class="inp level4-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level4r8c3" class="inp level4-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" ></div>
+                                </div>
+                                <div class="d-flex">
+                                    <div class="inp-box"><input type="text" name="" id="level4r9c1" class="inp level4-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" ></div>
+                                    <div class="inp-box"><input type="text" name="" id="level4r9c2" class="inp level4-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level4r9c3" class="inp level4-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" ></div>
+                                </div>
+                            </div>
+                            <div class="box">
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" name="" id="level4r7c4" class="inp level4-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level4r7c5" class="inp level4-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level4r7c6" class="inp level4-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="8" disabled></div>
+                                </div>
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" name="" id="level4r8c4" class="inp level4-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="4" disabled></div>
+                                    <div class="inp-box"><input type="text" name="" id="level4r8c5" class="inp level4-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" ></div>
+                                    <div class="inp-box"><input type="text" name="" id="level4r8c6" class="inp level4-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="7" disabled></div>
+                                </div>
+                                <div class="d-flex">
+                                    <div class="inp-box"><input type="text" name="" id="level4r9c4" class="inp level4-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level4r9c5" class="inp level4-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="1" disabled></div>
+                                    <div class="inp-box"><input type="text" name="" id="level4r9c6" class="inp level4-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                </div>
+                            </div>
+                            <div class="box">
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" name="" id="level4r7c7" class="inp level4-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" ></div>
+                                    <div class="inp-box"><input type="text" name="" id="level4r7c8" class="inp level4-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" ></div>
+                                    <div class="inp-box"><input type="text" name="" id="level4r7c9" class="inp level4-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                </div>
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" name="" id="level4r8c7" class="inp level4-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="5" disabled></div>
+                                    <div class="inp-box"><input type="text" name="" id="level4r8c8" class="inp level4-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level4r8c9" class="inp level4-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" ></div>
+                                </div>
+                                <div class="d-flex">
+                                    <div class="inp-box"><input type="text" name="" id="level4r9c7" class="inp level4-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level4r9c8" class="inp level4-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="6" disabled></div>
+                                    <div class="inp-box "><input type="text" name="" id="level4r9c9" class="inp level4-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" ></div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div id="level5" class="levels">
+                <div id="level5-box" class="sudoko-box d-block text-center mt-2">    
+                    <form action="" autocomplete="off" id="formSudoku">  <!-- Used only for auto complete=off . only for input tag of numbers. it affect all js if form given to all other buttons etc... --> 
+                        <div class="row-box">
+                            <div class="box">
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" id="level5r1c1" id="" class="inp level5-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" ></div>
+                                    <div class="inp-box"><input type="text" id="level5r1c2" id="" class="inp level5-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" ></div>
+                                    <div class="inp-box"><input type="text" id="level5r1c3" id="" class="inp level5-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck() " value="" ></div>
+                                </div>
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" id="level5r2c1" id="" class="inp level5-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" ></div>
+                                    <div class="inp-box"><input type="text" id="level5r2c2" id="" class="inp level5-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" id="level5r2c3" id="" class="inp level5-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="2" disabled></div>
+                                </div>
+                                <div class="d-flex">
+                                    <div class="inp-box"><input type="text" id="level5r3c1" id="" class="inp level5-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" id="level5r3c2" id="" class="inp level5-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="1" disabled></div>
+                                    <div class="inp-box"><input type="text" id="level5r3c3" id="" class="inp level5-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="7" disabled></div>
+                                </div>
+                            </div>
+                            <div class="box">
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" name="" id="level5r1c4" class="inp level5-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level5r1c5" class="inp level5-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" ></div>
+                                    <div class="inp-box"><input type="text" name="" id="level5r1c6" class="inp level5-inp" level5-inp maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="7" disabled></div>
+                                </div>
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" name="" id="level5r2c4" class="inp level5-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="4" disabled></div>
+                                    <div class="inp-box"><input type="text" name="" id="level5r2c5" class="inp level5-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" ></div>
+                                    <div class="inp-box"><input type="text" name="" id="level5r2c6" class="inp level5-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="6" disabled></div>
+                                </div>
+                                <div class="d-flex">
+                                    <div class="inp-box"><input type="text" name="" id="level5r3c4" class="inp level5-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level5r3c5" class="inp level5-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level5r3c6" class="inp level5-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                </div>
+                            </div>
+                            <div class="box">
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" name="" id="level5r1c7" class="inp level5-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level5r1c8" class="inp level5-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level5r1c9" class="inp level5-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                </div>
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" name="" id="level5r2c7" class="inp level5-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="3" disabled></div>
+                                    <div class="inp-box"><input type="text" name="" id="level5r2c8" class="inp level5-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level5r2c9" class="inp level5-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                </div>
+                                <div class="d-flex">
+                                    <div class="inp-box"><input type="text" name="" id="level5r3c7" class="inp level5-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="9" disabled></div>
+                                    <div class="inp-box"><input type="text" name="" id="level5r3c8" class="inp level5-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="6" disabled></div>
+                                    <div class="inp-box"><input type="text" name="" id="level5r3c9" class="inp level5-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row-box">
+                            <div class="box">
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" name="" id="level5r4c1" class="inp level5-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="5" disabled></div>
+                                    <div class="inp-box"><input type="text" name="" id="level5r4c2" class="inp level5-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="8" disabled></div>
+                                    <div class="inp-box"><input type="text" name="" id="level5r4c3" class="inp level5-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                </div>
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" name="" id="level5r5c1" class="inp level5-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" ></div>
+                                    <div class="inp-box"><input type="text" name="" id="level5r5c2" class="inp level5-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level5r5c3" class="inp level5-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                </div>
+                                <div class="d-flex">
+                                    <div class="inp-box"><input type="text" name="" id="level5r6c1" class="inp level5-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" ></div>
+                                    <div class="inp-box"><input type="text" name="" id="level5r6c2" class="inp level5-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="7" disabled></div>
+                                    <div class="inp-box"><input type="text" name="" id="level5r6c3" class="inp level5-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                </div>
+                            </div>
+                            <div class="box">
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" name="" id="level5r4c4" class="inp level5-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level5r4c5" class="inp level5-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" ></div>
+                                    <div class="inp-box"><input type="text" name="" id="level5r4c6" class="inp level5-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                </div>
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" name="" id="level5r5c4" class="inp level5-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" ></div>
+                                    <div class="inp-box"><input type="text" name="" id="level5r5c5" class="inp level5-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="9" disabled></div>
+                                    <div class="inp-box"><input type="text" name="" id="level5r5c6" class="inp level5-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" ></div>
+                                </div>
+                                <div class="d-flex">
+                                    <div class="inp-box"><input type="text" name="" id="level5r6c4" class="inp level5-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level5r6c5" class="inp level5-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" ></div>
+                                    <div class="inp-box"><input type="text" name="" id="level5r6c6" class="inp level5-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                </div>
+                            </div>
+                            <div class="box">
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" name="" id="level5r4c7" class="inp level5-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level5r4c8" class="inp level5-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="3" disabled></div>
+                                    <div class="inp-box"><input type="text" name="" id="level5r4c9" class="inp level5-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" ></div>
+                                </div>
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" name="" id="level5r5c7" class="inp level5-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level5r5c8" class="inp level5-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level5r5c9" class="inp level5-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" ></div>
+                                </div>
+                                <div class="d-flex">
+                                    <div class="inp-box"><input type="text" name="" id="level5r6c7" class="inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level5r6c8" class="inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="4" disabled></div>
+                                    <div class="inp-box"><input type="text" name="" id="level5r6c9" class="inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="2" disabled></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row-box">
+                            <div class="box">
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" name="" id="level5r7c1" class="inp level5-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level5r7c2" class="inp level5-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="9" disabled></div>
+                                    <div class="inp-box"><input type="text" name="" id="level5r7c3" class="inp level5-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="4" disabled></div>
+                                </div>
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" name="" id="level5r8c1" class="inp level5-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level5r8c2" class="inp level5-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level5r8c3" class="inp level5-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="5" disabled></div>
+                                </div>
+                                <div class="d-flex">
+                                    <div class="inp-box"><input type="text" name="" id="level5r9c1" class="inp level5-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level5r9c2" class="inp level5-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level5r9c3" class="inp level5-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                </div>
+                            </div>
+                            <div class="box">
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" name="" id="level5r7c4" class="inp level5-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level5r7c5" class="inp level5-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level5r7c6" class="inp level5-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                </div>
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" name="" id="level5r8c4" class="inp level5-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="2" disabled></div>
+                                    <div class="inp-box"><input type="text" name="" id="level5r8c5" class="inp level5-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" ></div>
+                                    <div class="inp-box"><input type="text" name="" id="level5r8c6" class="inp level5-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="8" disabled></div>
+                                </div>
+                                <div class="d-flex">
+                                    <div class="inp-box"><input type="text" name="" id="level5r9c4" class="inp level5-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="5" disabled></div>
+                                    <div class="inp-box"><input type="text" name="" id="level5r9c5" class="inp level5-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" ></div>
+                                    <div class="inp-box"><input type="text" name="" id="level5r9c6" class="inp level5-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                </div>
+                            </div>
+                            <div class="box">
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" name="" id="level5r7c7" class="inp level5-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="6" disabled></div>
+                                    <div class="inp-box"><input type="text" name="" id="level5r7c8" class="inp level5-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="5" disabled></div>
+                                    <div class="inp-box"><input type="text" name="" id="level5r7c9" class="inp level5-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                </div>
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" name="" id="level5r8c7" class="inp level5-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="1" disabled></div>
+                                    <div class="inp-box"><input type="text" name="" id="level5r8c8" class="inp level5-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level5r8c9" class="inp level5-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" ></div>
+                                </div>
+                                <div class="d-flex">
+                                    <div class="inp-box"><input type="text" name="" id="level5r9c7" class="inp level5-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level5r9c8" class="inp level5-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" ></div>
+                                    <div class="inp-box"><input type="text" name="" id="level5r9c9" class="inp level5-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" ></div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div id="level6" class="levels">
+                <div id="level6-box" class="sudoko-box d-block text-center mt-2">    
+                    <form action="" autocomplete="off" id="formSudoku">  <!-- Used only for auto complete=off . only for input tag of numbers. it affect all js if form given to all other buttons etc... --> 
+                        <div class="row-box">
+                            <div class="box">
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" id="level6r1c1" id="" class="inp level6-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="8" disabled></div>
+                                    <div class="inp-box"><input type="text" id="level6r1c2" id="" class="inp level6-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" ></div>
+                                    <div class="inp-box"><input type="text" id="level6r1c3" id="" class="inp level6-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck() " value="" ></div>
+                                </div>
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" id="level6r2c1" id="" class="inp level6-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" ></div>
+                                    <div class="inp-box"><input type="text" id="level6r2c2" id="" class="inp level6-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" id="level6r2c3" id="" class="inp level6-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="3" disabled></div>
+                                </div>
+                                <div class="d-flex">
+                                    <div class="inp-box"><input type="text" id="level6r3c1" id="" class="inp level6-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" id="level6r3c2" id="" class="inp level6-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="7" disabled ></div>
+                                    <div class="inp-box"><input type="text" id="level6r3c3" id="" class="inp level6-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                </div>
+                            </div>
+                            <div class="box">
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" name="" id="level6r1c4" class="inp level6-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level6r1c5" class="inp level6-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" ></div>
+                                    <div class="inp-box"><input type="text" name="" id="level6r1c6" class="inp level6-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                </div>
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" name="" id="level6r2c4" class="inp level6-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="6" disabled></div>
+                                    <div class="inp-box"><input type="text" name="" id="level6r2c5" class="inp level6-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level6r2c6" class="inp level6-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" ></div>
+                                </div>
+                                <div class="d-flex">
+                                    <div class="inp-box"><input type="text" name="" id="level6r3c4" class="inp level6-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level6r3c5" class="inp level6-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="9" disabled></div>
+                                    <div class="inp-box"><input type="text" name="" id="level6r3c6" class="inp level6-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                </div>
+                            </div>
+                            <div class="box">
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" name="" id="level6r1c7" class="inp level6-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level6r1c8" class="inp level6-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level6r1c9" class="inp level6-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                </div>
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" name="" id="level6r2c7" class="inp level6-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level6r2c8" class="inp level6-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" ></div>
+                                    <div class="inp-box"><input type="text" name="" id="level6r2c9" class="inp level6-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                </div>
+                                <div class="d-flex">
+                                    <div class="inp-box"><input type="text" name="" id="level6r3c7" class="inp level6-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="2" disabled></div>
+                                    <div class="inp-box"><input type="text" name="" id="level6r3c8" class="inp level6-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" ></div>
+                                    <div class="inp-box"><input type="text" name="" id="level6r3c9" class="inp level6-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" ></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row-box">
+                            <div class="box">
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" name="" id="level6r4c1" class="inp level6-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" ></div>
+                                    <div class="inp-box"><input type="text" name="" id="level6r4c2" class="inp level6-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="5" disabled></div>
+                                    <div class="inp-box"><input type="text" name="" id="level6r4c3" class="inp level6-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                </div>
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" name="" id="level6r5c1" class="inp level6-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" ></div>
+                                    <div class="inp-box"><input type="text" name="" id="level6r5c2" class="inp level6-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" ></div>
+                                    <div class="inp-box"><input type="text" name="" id="level6r5c3" class="inp level6-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                </div>
+                                <div class="d-flex">
+                                    <div class="inp-box"><input type="text" name="" id="level6r6c1" class="inp level6-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" ></div>
+                                    <div class="inp-box"><input type="text" name="" id="level6r6c2" class="inp level6-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level6r6c3" class="inp level6-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                </div>
+                            </div>
+                            <div class="box">
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" name="" id="level6r4c4" class="inp level6-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level6r4c5" class="inp level6-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" ></div>
+                                    <div class="inp-box"><input type="text" name="" id="level6r4c6" class="inp level6-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="7" disabled></div>
+                                </div>
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" name="" id="level6r5c4" class="inp level6-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" ></div>
+                                    <div class="inp-box"><input type="text" name="" id="level6r5c5" class="inp level6-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="4" disabled></div>
+                                    <div class="inp-box"><input type="text" name="" id="level6r5c6" class="inp level6-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="5" disabled ></div>
+                                </div>
+                                <div class="d-flex">
+                                    <div class="inp-box"><input type="text" name="" id="level6r6c4" class="inp level6-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="1" disabled></div>
+                                    <div class="inp-box"><input type="text" name="" id="level6r6c5" class="inp level6-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" ></div>
+                                    <div class="inp-box"><input type="text" name="" id="level6r6c6" class="inp level6-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                </div>
+                            </div>
+                            <div class="box">
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" name="" id="level6r4c7" class="inp level6-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level6r4c8" class="inp level6-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level6r4c9" class="inp level6-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" ></div>
+                                </div>
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" name="" id="level6r5c7" class="inp level6-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="7" disabled></div>
+                                    <div class="inp-box"><input type="text" name="" id="level6r5c8" class="inp level6-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" ></div>
+                                    <div class="inp-box"><input type="text" name="" id="level6r5c9" class="inp level6-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" ></div>
+                                </div>
+                                <div class="d-flex">
+                                    <div class="inp-box"><input type="text" name="" id="level6r6c7" class="inp level6-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level6r6c8" class="inp level6-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="3" disabled></div>
+                                    <div class="inp-box"><input type="text" name="" id="level6r6c9" class="inp level6-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" ></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row-box">
+                            <div class="box">
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" name="" id="level6r7c1" class="inp level6-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level6r7c2" class="inp level6-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" ></div>
+                                    <div class="inp-box"><input type="text" name="" id="level6r7c3" class="inp level6-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="1" disabled></div>
+                                </div>
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" name="" id="level6r8c1" class="inp level6-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level6r8c2" class="inp level6-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level6r8c3" class="inp level6-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="8" disabled></div>
+                                </div>
+                                <div class="d-flex">
+                                    <div class="inp-box"><input type="text" name="" id="level6r9c1" class="inp level6-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level6r9c2" class="inp level6-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="9" disabled></div>
+                                    <div class="inp-box"><input type="text" name="" id="level6r9c3" class="inp level6-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                </div>
+                            </div>
+                            <div class="box">
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" name="" id="level6r7c4" class="inp level6-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level6r7c5" class="inp level6-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level6r7c6" class="inp level6-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                </div>
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" name="" id="level6r8c4" class="inp level6-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="5" disabled ></div>
+                                    <div class="inp-box"><input type="text" name="" id="level6r8c5" class="inp level6-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" ></div>
+                                    <div class="inp-box"><input type="text" name="" id="level6r8c6" class="inp level6-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" ></div>
+                                </div>
+                                <div class="d-flex">
+                                    <div class="inp-box"><input type="text" name="" id="level6r9c4" class="inp level6-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level6r9c5" class="inp level6-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" ></div>
+                                    <div class="inp-box"><input type="text" name="" id="level6r9c6" class="inp level6-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                </div>
+                            </div>
+                            <div class="box">
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" name="" id="level6r7c7" class="inp level6-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" ></div>
+                                    <div class="inp-box"><input type="text" name="" id="level6r7c8" class="inp level6-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="6" disabled></div>
+                                    <div class="inp-box"><input type="text" name="" id="level6r7c9" class="inp level6-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="8" disabled></div>
+                                </div>
+                                <div class="d-flex btm-brdr">
+                                    <div class="inp-box"><input type="text" name="" id="level6r8c7" class="inp level6-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value=""></div>
+                                    <div class="inp-box"><input type="text" name="" id="level6r8c8" class="inp level6-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="1" disabled></div>
+                                    <div class="inp-box"><input type="text" name="" id="level6r8c9" class="inp level6-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" ></div>
+                                </div>
+                                <div class="d-flex">
+                                    <div class="inp-box"><input type="text" name="" id="level6r9c7" class="inp level6-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="4" disabled></div>
+                                    <div class="inp-box"><input type="text" name="" id="level6r9c8" class="inp level6-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" ></div>
+                                    <div class="inp-box"><input type="text" name="" id="level6r9c9" class="inp level6-inp" maxlength="1" oninput="this.value=this.value.replace(/[^1-9]/g,''); numBoxCheck()" value="" ></div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>        
+        </div>
+    </div>
+        <!-- right menu box -->
+        <div id="right-menu-box" class="" style="float: left;">
+            <button class="fa fa-bars border-0 rounded" id="menu-btn" onclick="editMenu()"></button>
+            <div id="right-opt" class="">
+                <div id="right1menu" class="rightMenu">
+                    <button class="material-icons edit-btn rounded" onclick="refresh()">refresh</button>
+                    <button class="fa fa-pencil text-white edit-btn rounded" ></button>
+                </div>
+                <div id="right1menu" class="rightMenu">
+                   
+                    <button class="fa fa-lightbulb-o edit-btn rounded" onmousedown="hint()" onmouseup="uncheckError()"></button>
+                    <button id="delBtn" class="fa fa-trash-o edit-btn rounded" onclick="del_InpValue()"></button>
+                </div>
+                <div id="right1menu" class="rightMenu">
+                    <button class="fa fa-check-circle edit-btn rounded" onclick="result()"></button>
+                    <img id="unmute" class="audioBtn rounded" src="/assets/image/unmute.jpg" alt="" type="button" onclick="muteUnmute()">
+                    <img id="mute" class="audioBtn rounded" src="/assets/image/mute.jpg" alt="" type="button" onclick="muteUnmute()">
+                    <audio id="music" src="/assets/audio/Heat Waves.mp3" loop="loop" autoplay="autoplay" div style="display:none" muted>
+                </div>
+            </div>
+            <div id="countdown-container" class="">
+                <div id="startGame"><button class="border-0 bg-black text-white rounded startBtn" onclick="timeOut()">Start</button></div>
+                <div id="countdown" class="">
+                    <span class="d-none"><span id="days">0d</span> : <span id="hours">0h</span> :</span>
+                    <div id="countdown-box"><button id="timer" class="border-0 bg-black text-white rounded" ><span id="minutes">15m</span> : <span id="seconds">0s</span></button></div>
+                </div>
+            </div>
+            <!-- Number highlighting, Checking and showing -->
+            <div id="num-box" class="">
+                <button id="num1" class="num-btn" onclick="showValue('1')">1</button>
+                <button id="num2" class="num-btn" onclick="showValue('2')">2</button>
+                <button id="num3" class="num-btn" onclick="showValue('3')">3</button>
+                <button id="num4" class="num-btn" onclick="showValue('4')">4</button>
+                <button id="num5" class="num-btn" onclick="showValue('5')">5</button>
+                <button id="num6" class="num-btn" onclick="showValue('6')">6</button>
+                <button id="num7" class="num-btn" onclick="showValue('7')">7</button>
+                <button id="num8" class="num-btn" onclick="showValue('8')">8</button>
+                <button id="num9" class="num-btn" onclick="showValue('9')">9</button>
+                <button id="num0" class="fa fa-remove num-btn" onclick="showValue('0')"></button>
+            </div>
+        </div>
+        <!--All Settings  -->
+        <div class="" id="settingsBox">
+
+            <!-- Theme box -->
+            <div id="themeSettings" class="">
+                <img class="theme" src="/assets/image/greenBlack.png" alt="" type="button" onclick="theme('green')">
+                <img class="theme" src="/assets/image/blueBlack.png" alt="" type="button" onclick="theme('blue')">
+                <img class="theme" src="/assets/image/redBlack.png" alt="" type="button" onclick="theme('red')">
+                <img class="theme" src="/assets/image/orangeBlack.png" alt="" type="button" onclick="theme('orange')">
+                <img class="theme" src="/assets/image/GoldBlack.png" alt="" type="button" onclick="theme('yellow')">
+                <img class="theme" src="/assets/image/whiteBlack.png" alt="" type="button" onclick="theme('black')">
+                <div class="theme" id="rightTheme" type="button" onclick="themeMenuHide()"><i class="theme_menu fa fa-angle-right"></i></div>
+            </div>           
+
+            <!-- Img selection box  -->
+            <div id="bgImgBox">
+                <div id="carouselExampleControls" class="carousel slide carouselsize" data-bs-ride="false">
+                    <div class="carousel-inner carouselsize">
+                        <div class="carousel-item active bgImg">
+                            <div class="bgImg" style="background-image: url(/assets/image/bg1.jpg);"></div>                    
+                        </div>
+                        <div class="carousel-item bgImg">
+                            <div class="bgImg" style="background-image: url(/assets/image/bg2.jpg);"></div>                    
+                        </div>
+                        <div class="carousel-item bgImg">
+                            <div class="bgImg" style="background-image: url(/assets/image/bg3.jpg);"></div>                    
+                        </div>
+                    </div>
+
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev" onclick="prev_slideBtn()">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next"onclick="nxt_slideBtn()">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>      
+                
+                <!-- set as default btn -->
+                <div class="text-center"><button class="bgsetBtn" onclick="bgImgSetting()">Set as background image</button> </div>
+            </div>        
+        </div>
+
+    
+
+   <!-- Congrats box -->
+   <div class="centered" id="win-box">
+        <div id="winImg" class="centered">
+            <div class="mt-3 centered text-center">
+                <div class="starBox">
+                    <i id="star1" class="fa fa-star-o starIcon"></i>                    
+                    <i id="star2" class="fa fa-star-o starIcon"></i>                    
+                    <i id="star3" class="fa fa-star-o starIcon"></i>                    
+                    <i id="star4" class="fa fa-star-o starIcon"></i>                    
+                    <i id="star5" class="fa fa-star-o starIcon"></i>                    
+                </div>
+                <p id="win_head" class="">Level Completed</p>
+            </div>
+            <div>
+                <div><button id="prevBtn" class="winFailBtns prevBtns" onclick="prevLevel()"><i class="fa fa-arrow-left "></i> Prev</button> </div>
+                <div><button id="retryBtn" class="winFailBtns retryBtns" onclick="retry()">Retry <i class="fa fa-refresh "></i></button> </div>
+                <div><button id="nxtBtn" class="winFailBtns" onclick="nextLevel()">Next <i class="fa fa-arrow-right"></i></button></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- fail box -->
+    <div class="centered" id="fail-box">
+        <div id="failImg" class="centered">
+            <div class="mt-3 centered text-center">
+                <div class="starBox">
+                    <i id="star6" class="fa fa-star-o fail_starIcon"></i>                    
+                    <i id="star7" class="fa fa-star-o fail_starIcon"></i>                    
+                    <i id="star8" class="fa fa-star-o fail_starIcon"></i>                    
+                    <i id="star9" class="fa fa-star-o fail_starIcon"></i>                    
+                    <i id="star10" class="fa fa-star-o fail_starIcon"></i>                    
+                </div>
+                <p id="fail_head" class="">Level Failed</p>
+            </div>
+            <div>
+                <div><button id="fail_prevBtn" class="winFailBtns prevBtns" onclick="prevLevel()"><i class="fa fa-arrow-left "></i> Prev</button> </div>
+                <div><button id="retryBtn" class="winFailBtns retryBtns" onclick="retry()">Retry <i class="fa fa-refresh "></i></button> </div>
+                <div><button id="fail_nxtBtn" class="winFailBtns bg-secondary" onclick="nextLevel()" disabled>Next <i class="fa fa-arrow-right "></i></button></div>
+            </div>
+        </div>
+    </div>
+</body>
+        <script src="/assets/js/script.js"></script>
+        <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+        <!-- JavaScript Bundle with Popper -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+        <script></script>
+</html>
+
+
+
+
