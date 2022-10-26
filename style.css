@@ -1,0 +1,414 @@
+body
+{
+    background-image: url(bg1.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0%;
+}
+p
+{
+    margin: 0%;
+}
+#header
+{
+    /* --bs-bg-opacity: 1;
+    background-color: rgba(var(--bs-primary-rgb),var(--bs-bg-opacity)); */
+    font-size: 3.5vmax;
+    font-weight: 700;
+    color: black;
+}
+#themeSettings
+{
+    position: fixed;
+    top: 0%;
+    right: 1%;
+    display: flex;
+}
+.theme
+{
+    width: 2.5vmax;
+    height: 2.5vmax;
+    margin: .5vmax;
+    margin-top: 1.5vmax;
+}
+.theme_menu
+{
+    font-size: 4vmax;
+    margin-top: -.8vmax;
+}
+
+#settingsBox
+{
+    margin-top: 1vmax;
+    margin-left: 7vmax;
+    display: none;
+    float: left;
+}
+.carouselsize
+{
+    width: 15vmax;
+    height: 10vmax;
+    border-radius: .8vmax;
+
+}
+.bgImg
+{
+    width: 15vmax;
+    height: 10vmax;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: .8vmax;
+}
+.bgsetBtn
+{
+    background-color: white;
+    border-radius: .8vmax;
+    width: 15vmax;
+    height: 2.5vmax;
+    border: .3px solid white;
+    margin-top: .9vmax;
+    font-size: 1vmax;
+    font-weight: 600;
+}
+.bgsetBtn:hover
+{
+    border: .3px solid grey;
+}
+.bgsetBtn:focus
+{
+    border: .2vmax solid blue;
+}
+
+#left-opt
+{
+    width: 30vmax;
+    margin-left: 1.5vmax;
+}
+
+.opt-btn
+{
+    width: 22vmax;
+    height: 4vmax;
+    border: 1px solid grey;
+    background-color: black;
+    color: rgb(183, 183, 183);
+    border-radius: 2vmax;
+    margin-bottom: .4vmax;
+}
+.opt-btn:hover{
+    color: white;
+}
+.flexDisplay
+{
+    display: flex;
+    margin-left: 2vmax;
+    align-items: center;
+}
+.options
+{
+    font-size: 1.7vmax;
+    font-weight: 700;
+    margin-right: 2vmax;
+}
+
+#level1Name
+{
+    color: gold;
+}
+
+.star-icon
+{
+    font-weight: 600;
+    font-size: 1.35vmax;
+    margin-left: .4vmax;
+}
+#setting
+{
+    font-size: 1.7vmax;
+    font-weight: 700;
+}
+.levels
+{
+    width: 31vmax;
+    height: 33vmax;
+    display: none;
+}
+#level1
+{
+    display: block;
+}
+.sudoko-box
+{
+    pointer-events: none;
+    margin-top: 0vmax;
+}
+
+.row-box
+{
+    width: 33vmax;
+    height: vmax;
+    margin: 0%;
+    padding: 0%;
+}
+.box
+{
+    width: 10vmax;
+    height: 10vmax;
+    float: left;
+    border: 2px solid black;
+    padding: 0%;
+}
+.num3Box
+{
+    display: flex;
+}
+.inp-box
+{
+    margin: 0%;
+    float: left;
+}
+.inp
+{
+    text-align: center;
+    width: 3.22vmax;
+    height: 3.22vmax;
+    margin: 0%;
+    font-size: 2vmax;
+    font-weight: 600;
+    float: left;
+}
+.inp:focus
+{
+    outline: none;
+}
+input[type="text"][disabled] 
+{
+    border: 1px solid grey;
+    color: black;
+    font-size: 2.1vmax;
+}
+
+#num-box
+{
+    text-align: center;
+    align-items: center;
+    width:17vmax;
+    pointer-events: none;
+    display: none;
+}
+.num-btn
+{
+    width: 3.2vmax;
+    height: 3.2vmax;
+    color: #000;
+    background-color: white;
+    font-weight: 900;
+    font-size: 1.3vmax;
+    border: 3px solid;
+    border-radius: 100%;
+    margin-top: 1.7vmax;
+    margin-right: .5vmax;
+}
+
+.num-btn:hover{
+    border: 2px solid;
+}
+#right-menu-box
+{
+    width: 10vmax;
+}
+#menu-btn
+{
+    font-size: 3vmax;
+}
+#right-opt
+{
+
+    margin-top: 1vmax;
+    margin-left: 2.6vmax;
+    font-size: 2vmax;
+    display: none;
+}
+
+.rightMenu
+{
+    width: 17vmax;
+    display: flex;
+}
+
+.edit-btn
+{
+    width: 3vmax;
+    height: 3vmax;
+    margin-bottom: .5vmax;
+    margin-right: 1vmax;
+    font-size: 1.8vmax;
+    padding: 0%;
+    background-color: #000;
+    color: whitesmoke;
+    border-radius: 1vmax;
+    font-weight: 500;
+}
+.audioBtn
+{
+    width: 3vmax;
+    height: 3vmax;
+}
+#unmute
+{
+    display: none;
+}
+
+#countdown-container {
+    margin-left: 2.6vmax;
+    display: flex; /*displays divs on a line*/
+}
+.startBtn
+{
+    width: 7vmax;
+    height: 3.5vmax;
+    font-size: 1.5vmax;
+    font-weight: 500;
+}
+.startBtn:hover
+{
+    font-size: 1.7vmax;
+    font-weight: 500;
+}
+#countdown {
+    font-family: "Fira Sans", sans-serif; /*changes the text font in the divelement */
+    display: none; /*displays divs on a line*/
+    padding: vmax; /*creates 30px space between the content of the div element and the walls of the div element*/
+    /* background: #1d81af; */
+    color: black; /*changes the text color in the div element*/
+    pointer-events: none;
+
+}
+#timer
+{
+    width: 6.5vmax;
+    height: 3.5vmax;
+}
+#countdown span {
+    font-weight: bold; /*boldens text in the span element*/
+    font-size: 1.2vmax; /*changes the text size in the span element*/
+    pointer-events: none;
+}
+#days{
+    display: none;
+}
+#hours{
+    display: none;
+}
+
+/* congrats box */
+.centered 
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+}
+
+#win-box
+{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);;
+    color: white;
+    display: none;
+}
+
+#winImg
+{
+    background-image: url(bg4.jpg);
+    background-repeat: repeat;
+    background-size: cover;
+    border-radius: 1.5vmax;
+    width: 57vmax;
+    height: 30vmax;
+}
+.starIcon
+{
+    font-size: 3vmax;
+    color: grey;
+    margin-right: 1vmax;
+}
+
+#win_head
+{
+    font-size: 3.5vmax;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: goldenrod;
+}
+.prevBtns
+{
+    position: absolute;
+    bottom: 5%;
+    left: 6%;
+}
+.retryBtns
+{
+    position: absolute;
+    bottom: 5%;
+    right: 22%;
+}
+#nxtBtn
+{
+    position: absolute;
+    bottom: 5%;
+    right: 6%;
+}
+.winFailBtns
+{
+    width: 7.5vmax;
+    height: 3vmax;
+    font-size: 1.3vmax;
+    font-weight: 700;
+    color: whitesmoke;
+    background-color: green;
+    padding: .3vmax;
+    border-radius: .5vmax;
+}
+
+/* fail box */
+#fail-box
+{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);;
+    color: white;
+    display: none;
+}
+
+#failImg
+{
+    background-image: url(bg5.jpg);
+    background-repeat: repeat;
+    background-size: cover;
+    border-radius: 1.5vmax;
+    width: 57vmax;
+    height: 30vmax;
+}
+.fail_starIcon
+{
+    font-size: 3vmax;
+    color: grey;
+    margin-right: 1vmax;
+}
+#fail_head
+{
+    font-size: 3.5vmax;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: goldenrod;
+}
+#fail_nxtBtn
+{
+    position: absolute;
+    bottom: 5%;
+    right: 6%;
+}
